@@ -6,12 +6,6 @@
   opacity: 70%;
   display: flex;
   justify-content: center;
-  padding: 60px 668px;
-}
-
-@media screen and (max-width: 627px) {
-  .footer__copyright {
-    width: 104px;
-    height: 16px;
-  }
+  padding: 60px 0px;
+  margin: 0;
 }
