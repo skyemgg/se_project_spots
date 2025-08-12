@@ -18,6 +18,9 @@
 @media screen and (max-width: 627px) {
   .cards {
     padding-bottom: 20px;
+  }
+
+  .cards__list {
     grid-template-columns: min-content;
     gap: 20px;
   }
