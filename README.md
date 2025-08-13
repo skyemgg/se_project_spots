@@ -11,7 +11,7 @@
 ## Deploment
 
 this project is deployed on GitHub
-git@github.com:skyemgg/se_project_spots.git
+https://skyemgg.github.io/se_project_spots/
 
 ## Video
 
