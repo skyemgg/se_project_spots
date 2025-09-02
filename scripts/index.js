@@ -5,12 +5,12 @@ const profileFormElement = editProfile.querySelector(".modal__form");
 const editNameInput = editProfile.querySelector("#name-input");
 const editDescriptionInput = editProfile.querySelector("#description-input");
 
-const profileFormElement = newPost.querySelector(".modal__form");
 const newPostButton = document.querySelector(".profile__post");
 const newPost = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPost.querySelector(".modal__close-button");
 const newPostImage = newPost.querySelector("#image-link-input");
 const newPostCaption = newPost.querySelector("#caption-input");
+const newPostFormElement = newPost.querySelector(".modal__form");
 
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
@@ -34,19 +34,20 @@ newPostCloseBtn.addEventListener("click", function () {
   newPost.classList.remove("modal_is-opened");
 });
 
-function handeleditProfileSubmit(evt) {
+function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = editNameInput.value;
   profileDescription.textContent = editDescriptionInput.value;
   editProfile.classList.remove("modal_is-opened");
 }
 
-profileFormElement.addEventListener("submit", handeleditProfileSubmit);
+profileFormElement.addEventListener("submit", handleeditProfileSubmit);
 
-function handelNewPostSubmit(evt) {
+function handleNewPostSubmit(evt) {
   evt.preventDefault();
+  console.log(newPostImage.value);
+  console.log(newPostCaption.value);
   newPost.classList.remove("modal_is-opened");
-  console.log;
 }
 
-profileFormElement.addEventListener("submit", handleNewPostSubmit);
+newPostFormElement.addEventListener("submit", handleNewPostSubmit);
