@@ -70,12 +70,12 @@ function getCardElement(data) {
   const cardImageL = cardElement.querySelector(".card__image");
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
-  cardLikeBtnL.addEventListener("click". ()<> {
+  cardLikeBtnL.addEventListener("click") {
 cardLikeBtnL.classList.toggle(".card__like-icon_active");
-  });
+  };
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
-  cardDeleteBtnL.addEventListener("click". ()<> {
+  cardDeleteBtnL.addEventListener("click"{
 cardDeleteBtnL.closest(".card").remove();
   });
 
