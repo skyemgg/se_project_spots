@@ -1,8 +1,7 @@
 const initialCards = [
   {
     name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
-
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 
   {
@@ -70,20 +69,18 @@ function getCardElement(data) {
   const cardImageL = cardElement.querySelector(".card__image");
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
-  cardLikeBtnL.addEventListener("click") {
-cardLikeBtnL.classList.toggle(".card__like-icon_active");
-  };
+  cardLikeBtnL.addEventListener("click");
+  cardLikeBtnL.classList.toggle(".card__like-icon_active");
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
-  cardDeleteBtnL.addEventListener("click"{
-cardDeleteBtnL.closest(".card").remove();
-  });
+  cardDeleteBtnL.addEventListener("click");
+  cardDeleteBtnL.closest(".card").remove();
 
   cardImageL.src = data.link;
   cardImageL.alt = data.name;
   cardTitleL.textContent = data.name;
 
-  cardImageL.addEventListener("click", () <> {});
+  cardImageL.addEventListener("click");
 
   previewModalImage.src = data.link;
   previewModalImage.alt = data.name;
@@ -100,7 +97,6 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
-
 }
 
 editProfileButton.addEventListener("click", function () {
@@ -127,7 +123,7 @@ newPostCloseBtn.addEventListener("click", function () {
 
 previewModal.addEventListener("click", function () {
   closeModal(previewModal);
-})
+});
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
@@ -142,10 +138,11 @@ profileFormElement.addEventListener("submit", handleEditProfileSubmit);
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
-const inputValues = ({
-    name: newPostCaption.value.
-    link: newPostImage.value.
-  });
+  const inputValues = {
+    name: newPostCaption.value.link,
+    newPostImage,
+    value,
+  };
 
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
