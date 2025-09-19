@@ -11,6 +11,7 @@
   align-items: center;
   padding: 10px;
   transition: visibility 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
 }
 
 .modal_type_preview {
@@ -19,6 +20,7 @@
 
 .modal_is-opened {
   visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -60,7 +62,7 @@
   opacity: 40%;
 }
 
-.modal_close-button:hover {
+.modal__close-button:hover {
   opacity: 100%;
 }
 .modal__title {
@@ -128,7 +130,7 @@
   position: relative;
 }
 
-.modal_image {
+.modal__image {
   max-width: 80vw;
   max-height: 80vh;
   width: 100%;

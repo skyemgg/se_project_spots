@@ -52,7 +52,7 @@ const newPostFormElement = newPost.querySelector(".modal__form");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 
-const previewModal = document.querySelector("#modal_type_preview");
+const previewModal = document.querySelector("#preview-modal");
 const previewModalClose = previewModal.querySelector(".modal__close-button");
 const previewModalImage = previewModal.querySelector(".modal_image");
 const previewModalTitle = previewModal.querySelector(".modal__preview-title");
@@ -64,23 +64,26 @@ const cardTemplate = document
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.clonenode(true);
-  const cardTitleL = cardElement.querySelector(".card__title");
-  const cardImageL = cardElement.querySelector(".card__image");
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleElement = cardElement.querySelector(".card__title");
+  const cardImageElement = cardElement.querySelector(".card__image");
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
-  cardLikeBtnL.addEventListener("click");
-  cardLikeBtnL.classList.toggle(".card__like-icon_active");
+  cardLikeBtnL.addEventListener("click", () =>
+    classList.toggle(".card__like-icon_active")
+  );
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
-  cardDeleteBtnL.addEventListener("click");
-  cardDeleteBtnL.closest(".card").remove();
+  cardDeleteBtnL.addEventListener("click", (e) =>
+    e.target.closest(".card").remove()
+  );
 
-  cardImageL.src = data.link;
-  cardImageL.alt = data.name;
-  cardTitleL.textContent = data.name;
+  cardImageElement.addEventListener("click");
 
-  cardImageL.addEventListener("click");
+  cardImageElement.src = data.link;
+  cardImageElement.alt = data.name;
+  cardTitleElement.textContent = data.name;
+  openModal(previewModal);
 
   previewModalImage.src = data.link;
   previewModalImage.alt = data.name;
@@ -139,9 +142,8 @@ function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
   const inputValues = {
-    name: newPostCaption.value.link,
-    newPostImage,
-    value,
+    name: newPostCaption.value,
+    link: newPostImage.value,
   };
 
   const cardElement = getCardElement(inputValues);
