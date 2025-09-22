@@ -78,18 +78,18 @@ function getCardElement(data) {
     e.target.closest(".card").remove()
   );
 
-  cardImageElement.addEventListener("click");
+  cardImageElement.addEventListener("click", () => {
+    previewModalImage.src = data.link;
+    previewModalImage.alt = data.name;
+    previewModalTitle.textContent = data.name;
+
+    openModal(previewModal);
+  });
 
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
   openModal(previewModal);
-
-  previewModalImage.src = data.link;
-  previewModalImage.alt = data.name;
-  previewModalTitle.textContent = data.name;
-  openModal(previewModal);
-  // closeModal(previewModal);
 
   return cardElement;
 }
