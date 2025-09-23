@@ -54,7 +54,7 @@ const profileDescription = document.querySelector(".profile__description");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalClose = previewModal.querySelector(".modal__close-button");
-const previewModalImage = previewModal.querySelector(".modal_image");
+const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalTitle = previewModal.querySelector(".modal__preview-title");
 
 const cardTemplate = document
@@ -69,8 +69,8 @@ function getCardElement(data) {
   const cardImageElement = cardElement.querySelector(".card__image");
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
-  cardLikeBtnL.addEventListener("click", () =>
-    classList.toggle(".card__like-icon_active")
+  cardLikeBtnL.addEventListener("click", (evt) =>
+    evt.target.classList.toggle(".card__like-icon_active")
   );
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
