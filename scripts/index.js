@@ -70,7 +70,7 @@ function getCardElement(data) {
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
   cardLikeBtnL.addEventListener("click", (evt) =>
-    evt.target.classList.toggle(".card__like-icon_active")
+    evt.target.classList.toggle("card__like-icon_active")
   );
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
@@ -89,7 +89,6 @@ function getCardElement(data) {
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
-  openModal(previewModal);
 
   return cardElement;
 }

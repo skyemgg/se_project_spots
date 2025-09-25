@@ -56,6 +56,7 @@
   right: -52.5px;
   width: 40px;
   height: 40px;
+  background-color: transparent;
 }
 
 .modal__close-button_type_preview:hover {
@@ -140,14 +141,18 @@
 }
 
 .modal__preview-title {
-  width: 214px;
-  height: 32px;
   border-radius: 8px;
   padding: 4px 8px;
-  margin-top: 750px;
-  margin-left: 223px;
+
   background-color: #212121;
   color: #fff;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
 }
 
 @media screen and (max-width: 627px) {
@@ -184,7 +189,11 @@
     right: 0;
   }
 
-  .modal__image-container {
+  .modal__image {
     max-width: unset;
+  }
+
+  .modal__preview-title {
+    font-size: 16px;
   }
 }
