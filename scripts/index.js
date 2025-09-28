@@ -148,6 +148,8 @@ function handleNewPostSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
+  newPostFormElement.reset();
+
   // newPost.classList.remove("modal_is-opened");
   closeModal(newPost);
 }

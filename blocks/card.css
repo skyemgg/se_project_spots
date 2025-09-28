@@ -70,7 +70,7 @@
 }
 
 .card__like-icon_active {
-  background-image: url(../images/red-like.svg);
+  background-image: url(../images/red-like-btn.png);
   opacity: 1;
   background-color: transparent;
 }
