@@ -39,6 +39,8 @@ const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfile.querySelector(".modal__close-button");
 const profileFormElement = editProfile.querySelector(".modal__form");
+const cardDisableButton = editProfile.querySelector(".modal__button");
+
 const editNameInput = editProfile.querySelector("#name-input");
 const editDescriptionInput = editProfile.querySelector("#description-input");
 
@@ -131,6 +133,7 @@ function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = editNameInput.value;
   profileDescription.textContent = editDescriptionInput.value;
+  disableButton(cardDisableButton, settings);
   // editProfile.classList.remove("modal_is-opened");
   closeModal(editProfile);
 }
