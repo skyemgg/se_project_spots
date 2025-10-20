@@ -97,6 +97,8 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", handleEscapeKey);
+  modal.addEventListener("click", handleOverlayClick);
 }
 
 function closeModal(modal) {
