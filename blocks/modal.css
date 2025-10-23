@@ -145,6 +145,7 @@
 
 .modal__submit-button_inactive {
   opacity: 50%;
+  pointer-events: none;
 }
 
 .modal__submit-button:hover {
