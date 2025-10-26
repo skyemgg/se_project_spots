@@ -38,7 +38,7 @@ const initialCards = [
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfile.querySelector(".modal__close-button");
-const editprofileFormElement = document.forms["edit-profile-form"];
+const editProfileFormElement = document.forms["edit-profile-form"];
 const cardDisableButton = editProfile.querySelector(".modal__submit-button");
 
 const editNameInput = editProfile.querySelector("#name-input");
@@ -96,8 +96,8 @@ function getCardElement(data) {
 }
 
 function handleEscapeKey(evt) {
-  if (evt.key === "Escape") {
-    const openModal = document.querySelector(".modal_is-opened");
+  if (evt.key === 'Escape') {
+    const openModal = document.querySelector('.modal_is-opened');
     closeModal(openedModal);
   }
 }
@@ -108,11 +108,18 @@ function handleOverlayClick(evt) {
   }
 }
 
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscapeKey);
   modal.addEventListener("click", handleOverlayClick);
 }
+
+const closeButtons = document.querySelectorAll('.modal__close-button');
+closeButtons.forEach((button) => {
+  const modal = button.closest('.modal');
+  button.addEventListener('click', () => closeModal (modal));
+});
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
@@ -123,7 +130,11 @@ function closeModal(modal) {
 editProfileButton.addEventListener("click", function () {
   editNameInput.value = profileTitle.textContent;
   editDescriptionInput.value = profileDescription.textContent;
-  openModal(editProfile);
+
+
+const inputList = [editNameInput, editDescriptionInput];
+resetValidation(editProfile,inputList, settings);
+openModal(editProfile);
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
@@ -160,8 +171,14 @@ function handleNewPostSubmit(evt) {
     link: newPostImage.value,
   };
 
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
+  //const cardElement = getCardElement(inputValues);
+  //cardsList.prepend(cardElement);
+
+  function renderCard (item, method = "prepend") {
+  const cardElement = getCardElement(item);
+cardsList[method](cardElement);
+};
+
 
   newPostFormElement.reset();
   disableButton(newPostSubmitButton, settings);
@@ -171,7 +188,3 @@ function handleNewPostSubmit(evt) {
 newPostFormElement.addEventListener("submit", handleNewPostSubmit);
 
 
-function renderCard(item, method = "prepend") {
-  const cardElement = getCardElement(item);
-cardsList[method](cardElement);
-};

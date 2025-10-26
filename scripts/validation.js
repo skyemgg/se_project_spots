@@ -2,7 +2,7 @@ const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-button",
-  inactiveButtonClass: "modal__button_inactive",
+  inactiveButtonClass: "modal__submit-button_inactive",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
@@ -61,6 +61,12 @@ const setEventListeners = (formEl, config) => {
     });
   });
 };
+
+function resetValidation(formEl, inputList, config) {
+  inputList.forEach((inputEl) => {
+    hideInputError(formEl, inputEl, config);
+  });
+}
 
 const enableValidation = (config) => {
   const formList = Array.form(document.querySelectorAll(config.formSelector));
