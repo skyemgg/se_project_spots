@@ -150,7 +150,7 @@ newPostCloseBtn.addEventListener("click", function () {
 });
 
 const previewCloseBtn = previewModal.querySelector(".modal__close-button");
-previewCloseBtn.addEventListener("click", function) () {
+previewCloseBtn.addEventListener("click", function){
   closeModal(previewModal);
   };
 
