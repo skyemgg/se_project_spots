@@ -50,6 +50,7 @@ const newPostCloseBtn = newPost.querySelector(".modal__close-button");
 const newPostImage = newPost.querySelector("#image-link-input");
 const newPostCaption = newPost.querySelector("#caption-input");
 const newPostFormElement = newPost.querySelector(".modal__form");
+const newPostSubmitButton = newPost.querySelector(".modal__submit-button");
 
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
@@ -175,11 +176,11 @@ function handleNewPostSubmit(evt) {
   };
 
   renderCard(inputValues);
-}
 
-newPostFormElement.reset();
-disableButton(newPostSubmitButton, settings);
-closeModal(newPost);
+  newPostFormElement.reset();
+  disableButton(newPostSubmitButton, settings);
+  closeModal(newPost);
+}
 
 initialCards.forEach((card) => {
   renderCard(card, "append");
