@@ -99,7 +99,7 @@ function getCardElement(data) {
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
     const openModal = document.querySelector(".modal_is-opened");
-    closeModal(openedModal);
+    closeModal(openModal);
   }
 }
 
