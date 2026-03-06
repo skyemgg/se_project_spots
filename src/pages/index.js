@@ -38,6 +38,20 @@ const initialCards = [
   },
 ];
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f6f442cc-a414-4c27-9271-835636579062",
+  },
+  "Content-Type": "application/json",
+});
+
+api.getInitialCards{}
+  .then((cards) => (
+    console.log(cards)
+  ));
+
+
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfile.querySelector(".modal__close-button");
@@ -76,12 +90,12 @@ function getCardElement(data) {
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
   cardLikeBtnL.addEventListener("click", (evt) =>
-    evt.target.classList.toggle("card__like-icon_active")
+    evt.target.classList.toggle("card__like-icon_active"),
   );
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
   cardDeleteBtnL.addEventListener("click", (e) =>
-    e.target.closest(".card").remove()
+    e.target.closest(".card").remove(),
   );
 
   cardImageElement.addEventListener("click", () => {
