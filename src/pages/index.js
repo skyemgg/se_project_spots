@@ -1,42 +1,43 @@
-import { enableValidation, settings } from "./validation.js";
-import "./index.css";
+import { enableValidation, settings } from "../validation.js";
+import "../index.css";
+import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
+//const initialCards = [
+//{
+//name: "Golden Gate Bridge",
+// link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//},
 
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
+// {
+//  name: "Val Thorens",
+//  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+// },
 
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
+//{
+//  name: "Restaurant terrace",
+//  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+// },
 
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
+//{
+// name: "An outdoor cafe",
+// link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+//},
 
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
+// {
+// name: "A very long bridge, over the forest and through the trees",
+// link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+// },
 
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
+// {
+// name: "Tunnel with morning light",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+//},
 
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
+// {
+// name: "Mountain house",
+//link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//},
+//];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -46,11 +47,19 @@ const api = new Api({
   "Content-Type": "application/json",
 });
 
-api.getInitialCards{}
-  .then((cards) => (
-    console.log(cards)
-  ));
+initialCards.forEach((card) => {
+  renderCard(card, "append");
+});
 
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((card) => {
+      renderCard(card, "append");
+    });
+  });
+  .catch((err) => {
+    console.error(err);
 
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
@@ -198,10 +207,6 @@ function handleNewPostSubmit(evt) {
   disableButton(newPostSubmitButton, settings);
   closeModal(newPost);
 }
-
-initialCards.forEach((card) => {
-  renderCard(card, "append");
-});
 
 newPostFormElement.addEventListener("submit", handleNewPostSubmit);
 
