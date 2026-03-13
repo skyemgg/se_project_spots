@@ -51,15 +51,13 @@ initialCards.forEach((card) => {
   renderCard(card, "append");
 });
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    cards.forEach((card) => {
-      renderCard(card, "append");
-    });
+api.getInitialCards().then((cards) => {
+  cards.forEach((card) => {
+    renderCard(card, "append");
   });
-  .catch((err) => {
-    console.error(err);
+});
+// catch((err) => {
+// console.error(err);}
 
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
