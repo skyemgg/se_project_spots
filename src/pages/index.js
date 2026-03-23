@@ -1,5 +1,5 @@
-import { enableValidation, settings } from "./validation.js";
-import "./index.css";
+import "./pages/index.css";
+import { enableValidation, validationConfig } from "../scripts/validation.js";
 
 const initialCards = [
   {
@@ -76,12 +76,12 @@ function getCardElement(data) {
 
   const cardLikeBtnL = cardElement.querySelector(".card__like-icon");
   cardLikeBtnL.addEventListener("click", (evt) =>
-    evt.target.classList.toggle("card__like-icon_active")
+    evt.target.classList.toggle("card__like-icon_active"),
   );
 
   const cardDeleteBtnL = cardElement.querySelector(".card__delete-button");
   cardDeleteBtnL.addEventListener("click", (e) =>
-    e.target.closest(".card").remove()
+    e.target.closest(".card").remove(),
   );
 
   cardImageElement.addEventListener("click", () => {

@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
-    main: "./src/pages/index.js",
+    main: "./pages/index.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -54,7 +54,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      favicon: "./src/images/favicon.ico", // path to the favicon
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
