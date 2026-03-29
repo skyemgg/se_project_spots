@@ -1,5 +1,29 @@
-import "./pages/index.css";
-import { enableValidation, validationConfig } from "../scripts/validation.js";
+import index.css from "./src/pages/index.css";
+import {
+  enableValidation,
+  validationConfig,
+}
+from "./src/scripts/validation.js";
+
+import Golden Gate Bridge from "../src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+
+    import Val Thorens
+    from "./src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+
+    import Restaurant terrace
+    from "./src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+
+    import An outdoor cafe
+    from "./src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+
+    import A very long bridge, over the forest and through the trees
+    from "./src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+
+    import Tunnel with morning light
+    from "./src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+
+    import Mountain house from "./src/images/practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+
 
 const initialCards = [
   {
@@ -135,7 +159,7 @@ editProfileButton.addEventListener("click", function () {
   editDescriptionInput.value = profileDescription.textContent;
 
   const inputList = [editNameInput, editDescriptionInput];
-  resetValidation(editProfile, inputList, settings);
+  resetValidation(editProfile, inputList, validationConfig);
   openModal(editProfile);
 });
 
@@ -181,7 +205,7 @@ function handleNewPostSubmit(evt) {
   renderCard(inputValues);
 
   newPostFormElement.reset();
-  disableButton(newPostSubmitButton, settings);
+  disableButton(newPostSubmitButton, validationConfig);
   closeModal(newPost);
 }
 
@@ -191,4 +215,4 @@ initialCards.forEach((card) => {
 
 newPostFormElement.addEventListener("submit", handleNewPostSubmit);
 
-enableValidation(settings);
+enableValidation(validationConfig);

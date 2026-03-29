@@ -13,7 +13,7 @@
   "license": "ISC",
   "author": "Skye Grady",
   "type": "commonjs",
-  "main": "babel.config.js",
+  "main": "../pages/index/js",
   "scripts": {
     "commandName": "echo 'script executed'",
     "build": "webpack --mode production",
