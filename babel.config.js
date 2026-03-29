@@ -4,8 +4,7 @@ const presets = [
     {
       targets: "defaults, IE 11, not dead",
       useBuiltIns: "entry",
-      corejs: "3",
-      modules: false, // ← Add this line
+      corejs: "^3",
     },
   ],
 ];
