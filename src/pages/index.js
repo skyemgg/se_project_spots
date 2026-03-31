@@ -1,6 +1,20 @@
-import { enableValidation, settings } from "../validation.js";
-import "../index.css";
+import {
+  enableValidation,
+  validationConfig,
+  disableButton,
+  resetValidation,
+} from "../scripts/validation.js";
+import "../pages/index.css";
 import Api from "../utils/Api.js";
+import logoImg from "../images/Logo-min.jpg";
+import avatarImg from "../images/avatar.jpg";
+import penImg from "../images/pen.svg";
+import postImg from "../images/post.svg";
+
+document.querySelector(".header__logo").src = logoImg;
+document.querySelector(".profile__avatar").src = avatarImg;
+document.querySelector(".profile__edit img").src = penImg;
+document.querySelector(".profile__post img").src = postImg;
 
 //const initialCards = [
 //{
@@ -42,22 +56,20 @@ import Api from "../utils/Api.js";
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "f6f442cc-a414-4c27-9271-835636579062",
+    authorization: "63415261-ce45-47a6-b061-e9eb5a8e36aa",
   },
   "Content-Type": "application/json",
 });
 
-initialCards.forEach((card) => {
-  renderCard(card, "append");
+Api.getAppInfo().then(([cards]) => {
+  cards
+    .forEach((card) => {
+      renderCard(card, "append");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
-
-api.getInitialCards().then((cards) => {
-  cards.forEach((card) => {
-    renderCard(card, "append");
-  });
-});
-// catch((err) => {
-// console.error(err);}
 
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
