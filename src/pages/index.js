@@ -61,15 +61,20 @@ const api = new Api({
   "Content-Type": "application/json",
 });
 
-Api.getAppInfo().then(([cards]) => {
-  cards
-    .forEach((card) => {
+Api.getAppInfo()
+  .then(([cards, userInfo]) => {
+    cards.forEach((card) => renderCard(card, "append"));
+    profileTitle.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+    document.querySelector(".profile_avatar").src = userInfo.avatar;
+
+    cards.forEach((card) => {
       renderCard(card, "append");
-    })
-    .catch((err) => {
-      console.error(err);
     });
-});
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
