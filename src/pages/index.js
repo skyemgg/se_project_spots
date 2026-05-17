@@ -5,11 +5,13 @@ import {
   resetValidation,
 } from "../scripts/validation.js";
 import "../pages/index.css";
+import "../uils/helper.js";
 import Api from "../utils/Api.js";
 import logoImg from "../images/Logo-min.jpg";
 import avatarImg from "../images/avatar.jpg";
 import penImg from "../images/pen.svg";
 import postImg from "../images/post.svg";
+import { setButtonText } from "../../utils/helper.js";
 
 document.querySelector(".header__logo").src = logoImg;
 document.querySelector(".profile__avatar").src = avatarImg;
@@ -120,6 +122,11 @@ const cardTemplate = document.querySelector("#card-template");
 
 let selectedCard, selectedCardId;
 
+
+function handleLike(evt, Id){
+  evt.target.classList.toggle("card__like-button_active");
+}
+
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
@@ -157,7 +164,7 @@ function getCardElement(data) {
     e.target.closest(".card").remove(),
   );
 
-likeButton.addEventListener("click", handleLike);
+likeButton.addEventListener("click",(evt) => handleLike (evt, data._Id));
 deleteButton.addEventListener("click", (evt) => handleDeleteCard (cardElement, data._Id));
 
   cardImageElement.addEventListener("click", () => {
@@ -235,6 +242,9 @@ previewCloseBtn.addEventListener("click", function () {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
+const submitBtn = evt.submitter;
+setButtonText(submitBtn, true, "Save", "Saving...");
+
   api
     .editUserInfo({
       name: editNameInput.value,
@@ -245,7 +255,11 @@ function handleEditProfileSubmit(evt) {
       profileDescription.textContent = editDescriptionInput.value;
       closeModal(editProfile);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, true, "Save", "Saving...")
+    });
+
 }
 
 editProfileFormElement.addEventListener("submit", handleEditProfileSubmit);
