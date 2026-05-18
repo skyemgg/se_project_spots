@@ -12,8 +12,7 @@
   },
   "license": "ISC",
   "author": "Skye Grady",
-  "type": "commonjs",
-  "main": "../pages/index/js",
+  "main": "src/pages/index.js",
   "scripts": {
     "commandName": "echo 'script executed'",
     "build": "webpack --mode production",
