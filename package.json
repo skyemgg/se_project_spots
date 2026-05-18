@@ -2,7 +2,7 @@
   "name": "se_project_spots",
   "version": "1.0.0",
   "description": "spots project",
-  "main": "index.js",
+  "main": "src/pages/index.js",
   "homepage": "https://github.com/skyemgg/se_project_spots#readme",
   "bugs": {
     "url": "https://github.com/skyemgg/se_project_spots/issues"
@@ -21,7 +21,6 @@
   },
   "license": "ISC",
   "author": "Skye Grady",
-  "type": "commonjs",
   "dependencies": {
     "array-union": "^2.1.0",
     "async": "^3.2.6",
