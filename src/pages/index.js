@@ -63,16 +63,6 @@ const initialCards = [
   },
 ];
 
-api
-  .getAppInfo()
-  .then(([cards, userInfo]) => {
-    profileTitle.textContent = userInfo.name;
-    profileDescription.textContent = userInfo.about;
-    document.querySelector(".profile__avatar").src = userInfo.avatar;
-    cards.forEach((card) => renderCard(card, "append"));
-  })
-  .catch(console.error);
-
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfile.querySelector(".modal__close-button");
@@ -108,6 +98,16 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+api
+  .getAppInfo()
+  .then(([cards, userInfo]) => {
+    profileTitle.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+    document.querySelector(".profile__avatar").src = userInfo.avatar;
+    cards.forEach((card) => renderCard(card, "append"));
+  })
+  .catch(console.error);
 
 let selectedCard, selectedCardId;
 
