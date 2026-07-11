@@ -6,7 +6,7 @@
 }
 
 .profile__avatar-container {
-  position: absolute;
+  position: relative;
   width: 100px;
   height: 100px;
 
@@ -18,7 +18,8 @@
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
-  visibility: visible;
+  visibility: hidden;
+  position: absolute;
 }
 
 .profile__avatar {
