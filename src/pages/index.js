@@ -1,6 +1,6 @@
 import {
   enableValidation,
-  validationConfig,
+  config,
   disableButton,
   resetValidation,
 } from "../scripts/validation.js";
@@ -94,9 +94,7 @@ const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
 
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
+const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
 api
@@ -112,7 +110,9 @@ api
 let selectedCard, selectedCardId;
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
   const cardTitleElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
   const likeButton = cardElement.querySelector(".card__like-icon");
@@ -198,7 +198,7 @@ editProfileButton.addEventListener("click", function () {
   editNameInput.value = profileTitle.textContent;
   editDescriptionInput.value = profileDescription.textContent;
   const inputList = [editNameInput, editDescriptionInput];
-  resetValidation(editProfile, inputList, validationConfig);
+  resetValidation(editProfile, inputList, config);
   openModal(editProfile);
 });
 
@@ -254,7 +254,7 @@ function handleNewPostSubmit(evt) {
     .then((newCard) => {
       renderCard(newCard);
       newPostFormElement.reset();
-      disableButton(newPostSubmitButton, validationConfig);
+      disableButton(newPostSubmitButton, config);
       closeModal(newPost);
     })
     .catch(console.error)
@@ -267,4 +267,4 @@ deleteForm.addEventListener("submit", handleDeleteSubmit);
 const previewCloseBtn = previewModal.querySelector(".modal__close-button");
 previewCloseBtn.addEventListener("click", () => closeModal(previewModal));
 
-enableValidation(validationConfig);
+enableValidation(config);
