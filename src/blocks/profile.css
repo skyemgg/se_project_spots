@@ -7,8 +7,19 @@
 
 .profile__avatar-container {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 190px;
+  height: 190px;
+}
+
+.profile__avatar-container:hover .profile__avatar-btn {
+  visibility: visible;
+}
+.profile__avatar {
+  margin-right: 20px;
+  border-radius: 8px;
+  height: 190px;
+  width: 190px;
+  display: block;
 }
 
 .profile__avatar-submit-button {
@@ -32,25 +43,24 @@
   border: none;
 }
 
-.profile__avatar-container:hover .profile__avatar-btn {
-  visibility: visible;
-  position: absolute;
-}
-
-.profile__avatar {
-  margin-right: 20px;
-  border-radius: 8px;
-  height: 190px;
-  width: 190px;
-  visibility: hidden;
-}
 .profile__avatar-btn {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  top: 0;
+  left: 0;
+  width: 190px;
+  height: 190px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* optional dark overlay so the pencil icon is visible against any photo */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   visibility: hidden;
 }
 

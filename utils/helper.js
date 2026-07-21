@@ -1,12 +1,28 @@
-export function setButtonText(
-  btn,
+export function renderLoading(
   isLoading,
-  defaultText = "Save",
+  button,
+  buttonText = "Save",
   loadingText = "Saving...",
 ) {
   if (isLoading) {
-    btn.textContent = loadingText; // "Saving..."
+    button.textContent = loadingText;
   } else {
-    btn.textContent = defaultText; // "Save"
+    button.textContent = buttonText;
   }
+}
+
+export function handleSubmit(request, evt, loadingText = "Saving...") {
+  evt.preventDefault();
+  const submitButton = evt.submitter;
+  const initialText = submitButton.textContent;
+  renderLoading(true, submitButton, initialText, loadingText);
+
+  request()
+    .then(() => {
+      evt.target.reset();
+    })
+    .catch(console.error)
+    .finally(() => {
+      renderLoading(false, submitButton, initialText);
+    });
 }

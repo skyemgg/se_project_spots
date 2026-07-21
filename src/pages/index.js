@@ -5,14 +5,13 @@ import {
   resetValidation,
 } from "../scripts/validation.js";
 import "../pages/index.css";
-import "../../utils/helper.js";
+//import "../../utils/helper.js";
+import { renderLoading, handleSubmit } from "../../utils/helper.js";
 import Api from "../../utils/Api.js";
 import logoImg from "../images/Logo-min.jpg";
 import avatarImg from "../images/avatar.jpg";
 import penImg from "../images/pen.svg";
 import postImg from "../images/post.svg";
-
-import { setButtonText } from "../../utils/helper.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -139,7 +138,16 @@ function getCardElement(data) {
 }
 
 function handleLike(evt, id) {
-  evt.target.classList.toggle("card__like-icon_active");
+  const isLiked = evt.target.classList.contains("card__like-icon_active");
+
+  api
+    .changeLikeStatus(id, isLiked)
+    .then((updatedCard) => {
+      evt.target.classList.toggle("card__like-icon_active");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -204,21 +212,19 @@ editProfileButton.addEventListener("click", function () {
 });
 
 function handleEditProfileSubmit(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
-  api
-    .editUserInfo({
-      name: editNameInput.value,
-      about: editDescriptionInput.value,
-    })
-    .then((data) => {
-      profileTitle.textContent = data.name;
-      profileDescription.textContent = data.about;
-      closeModal(editProfile);
-    })
-    .catch(console.error)
-    .finally(() => setButtonText(submitBtn, false));
+  function makeRequest() {
+    return api
+      .editUserInfo({
+        name: editNameInput.value,
+        about: editDescriptionInput.value,
+      })
+      .then((data) => {
+        profileTitle.textContent = data.name;
+        profileDescription.textContent = data.about;
+        closeModal(editProfile);
+      });
+  }
+  handleSubmit(makeRequest, evt);
 }
 
 editProfileFormElement.addEventListener("submit", handleEditProfileSubmit);
@@ -226,17 +232,13 @@ editProfileFormElement.addEventListener("submit", handleEditProfileSubmit);
 avatarModalBtn.addEventListener("click", () => openModal(avatarModal));
 
 function handleAvatarSubmit(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
-  api
-    .editAvatarInfo(avatarInput.value)
-    .then((data) => {
+  function makeRequest() {
+    return api.editAvatarInfo(avatarInput.value).then((data) => {
       document.querySelector(".profile__avatar").src = data.avatar;
       closeModal(avatarModal);
-    })
-    .catch(console.error)
-    .finally(() => setButtonText(submitBtn, false));
+    });
+  }
+  handleSubmit(makeRequest, evt);
 }
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
@@ -244,22 +246,19 @@ avatarForm.addEventListener("submit", handleAvatarSubmit);
 newPostButton.addEventListener("click", () => openModal(newPost));
 
 function handleNewPostSubmit(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
-  api
-    .createCard({
-      name: newPostCaption.value,
-      link: newPostImage.value,
-    })
-    .then((newCard) => {
-      renderCard(newCard);
-      newPostFormElement.reset();
-      disableButton(newPostSubmitButton, config);
-      closeModal(newPost);
-    })
-    .catch(console.error)
-    .finally(() => setButtonText(submitBtn, false));
+  function makeRequest() {
+    return api
+      .createCard({
+        name: newPostCaption.value,
+        link: newPostImage.value,
+      })
+      .then((newCard) => {
+        renderCard(newCard);
+        disableButton(newPostSubmitButton, config);
+        closeModal(newPost);
+      });
+  }
+  handleSubmit(makeRequest, evt);
 }
 
 newPostFormElement.addEventListener("submit", handleNewPostSubmit);
