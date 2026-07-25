@@ -1,4 +1,4 @@
-export const validationConfig = {
+export const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-button",
@@ -51,7 +51,9 @@ export const disableButton = (buttonEl, config) => {
 const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
+  if (!buttonEl || inputList.length === 0) return;
 
+  console.log(formEl);
   toggleButtonState(inputList, buttonEl, config);
 
   inputList.forEach((inputEl) => {
