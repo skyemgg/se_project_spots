@@ -63,6 +63,11 @@ const initialCards = [
   },
 ];
 
+document.querySelector(".header__logo").src = logoImg;
+document.querySelector(".profile__avatar").src = avatarImg;
+document.querySelector(".profile__edit img").src = penImg;
+document.querySelector(".profile__post img").src = postImg;
+
 const editProfileButton = document.querySelector(".profile__edit");
 const editProfile = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfile.querySelector(".modal__close-button");
