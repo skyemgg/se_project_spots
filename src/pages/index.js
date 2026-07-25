@@ -89,7 +89,7 @@ const previewModalTitle = previewModal.querySelector(".modal__preview-title");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
-const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+const avatarInput = avatarModal.querySelector("#profile__avatar-input");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
