@@ -34,6 +34,14 @@
   position: relative;
   box-sizing: border-box;
 }
+.modal__container-close-type_delete {
+  border-radius: 8px;
+  background-color: #fff;
+  max-width: 630px;
+  height: 200px;
+  position: relative;
+  box-sizing: border-box;
+}
 
 .modal__button {
   font-family: Poppins, Arial, Helvetica, sans-serif;
@@ -56,6 +64,10 @@
   border: 1;
   border-radius: 8px;
 }
+.modal__button:hover {
+  background-color: black;
+  color: white;
+}
 .modal__button-delete {
   background-color: #ff6565;
   width: 156px;
@@ -76,6 +88,11 @@
   align-items: center;
   cursor: pointer;
 }
+
+.modal__button-delete:hover {
+  background: #ff3333;
+}
+
 .modal__close-button {
   position: absolute;
   top: 32px;
@@ -93,6 +110,13 @@
 .modal__close-button_inactive {
   color: #212121;
   opacity: 50%;
+}
+
+.modal__close-button-type_delete {
+  top: -32px;
+  right: -50px;
+  background-color: transparent;
+  background-image: url(../images/CloseIcon.svg);
 }
 
 .modal__close-button_type_preview {
@@ -139,6 +163,18 @@
   gap: 32px;
   border-radius: 8px;
   display: contents;
+  justify-content: center;
+}
+
+.modal__form-type-delete {
+  display: flex;
+  width: 100%;
+  top: 325px;
+  left: 405px;
+
+  gap: 32px;
+  border-radius: 8px;
+
   justify-content: center;
 }
 .modal__label {

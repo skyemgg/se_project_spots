@@ -23,7 +23,7 @@
           <div class="profile__avatar-container">
             <button class="profile__avatar-btn">
               <img
-                src="<%=require('./images/avatar.jpg')%>"
+                src="<%=require('./images/pen.svg')%>"
                 alt="pencil icon"
                 class="profile__pencil-icon"
               />
@@ -150,10 +150,10 @@
         <button type="button" class="modal__close-button"></button>
         <h2 class="modal__title">Edit avatar</h2>
         <form class="modal__form">
-          <label for="profile__avatar-input" class="modal__label">
+          <label for="profile-avatar-input" class="modal__label">
             Profile Picture
             <input
-              id="profile__avatar-input"
+              id="profile-avatar-input"
               type="url"
               class="modal__input"
               placeholder="paste link to the picture"
@@ -168,16 +168,16 @@
     </div>
 
     <div class="modal" id="delete-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__container-close-type_delete">
         <button
           type="button"
-          class="modal__close-button"
+          class="modal__close-button modal__close-button-type_delete"
           aria-label="Close modal"
         ></button>
         <h3 class="modal__title">
           Are you sure you want to delete this image?
         </h3>
-        <form class="modal__form" id="delete-form">
+        <form class="modal__form modal__form-type-delete" id="delete-form">
           <button type="submit" class="modal__button-delete">Delete</button>
           <button type="button" class="modal__button">Cancel</button>
         </form>

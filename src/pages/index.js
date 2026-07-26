@@ -21,11 +21,6 @@ const api = new Api({
   },
 });
 
-document.querySelector(".header__logo").src = logoImg;
-document.querySelector(".profile__avatar").src = avatarImg;
-document.querySelector(".profile__edit img").src = penImg;
-document.querySelector(".profile__post img").src = postImg;
-
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -64,7 +59,6 @@ const initialCards = [
 ];
 
 document.querySelector(".header__logo").src = logoImg;
-document.querySelector(".profile__avatar").src = avatarImg;
 document.querySelector(".profile__edit img").src = penImg;
 document.querySelector(".profile__post img").src = postImg;
 
@@ -91,10 +85,11 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalTitle = previewModal.querySelector(".modal__preview-title");
 
+const profileAvatar = document.querySelector(".profile__avatar");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
-const avatarInput = avatarModal.querySelector("#profile__avatar-input");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
@@ -105,9 +100,9 @@ const cardsList = document.querySelector(".cards__list");
 api
   .getAppInfo()
   .then(([cards, userInfo]) => {
+    profileAvatar.src = userInfo.avatar;
     profileTitle.textContent = userInfo.name;
     profileDescription.textContent = userInfo.about;
-    document.querySelector(".profile__avatar").src = userInfo.avatar;
     cards.forEach((card) => renderCard(card, "append"));
   })
   .catch(console.error);
@@ -239,7 +234,7 @@ avatarModalBtn.addEventListener("click", () => openModal(avatarModal));
 function handleAvatarSubmit(evt) {
   function makeRequest() {
     return api.editAvatarInfo(avatarInput.value).then((data) => {
-      document.querySelector(".profile__avatar").src = data.avatar;
+      profileAvatar.src = data.avatar;
       closeModal(avatarModal);
     });
   }
