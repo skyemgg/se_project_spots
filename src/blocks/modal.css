@@ -283,9 +283,16 @@
     flex-direction: column;
     align-items: center;
     max-width: 627px;
-    height: 300px;
     padding: 12px 12px;
   }
+
+  .modal__container-close-type_delete {
+    display: flex;
+    max-width: 300px;
+    height: 208px;
+    padding: 12px 12px;
+  }
+
   .modal__form {
     width: 300;
     height: 208;
@@ -298,6 +305,9 @@
   .modal__title {
     font-size: 20px;
     line-height: 100%;
+    margin: 0 0 15px;
+    display: flex;
+    padding-top: 15px;
   }
 
   .modal__close-button {
@@ -308,19 +318,19 @@
   }
   .modal__close-button-type_delete {
     max-width: 50px;
-    top: -50px;
-    right: -250px;
-    position: relative;
+    top: -55px;
+
+    position: absolute;
     box-sizing: border-box;
   }
 
   .modal__form-type-delete {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 16px;
     align-items: center;
-    margin-top: 32px;
+    padding: unset;
+    height: 116px;
+    gap: 12px;
   }
   .modal__label {
     font-size: 16px;

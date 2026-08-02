@@ -162,6 +162,7 @@
   .profile__column {
     align-items: center;
     margin-bottom: 20px;
+    padding-top: 8px;
   }
 
   .profile__avatar {
