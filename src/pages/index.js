@@ -158,13 +158,19 @@ function handleDeleteCard(cardElement, cardId) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const deleteBtn = deleteForm.querySelector(".modal__button-delete");
+  deleteBtn.textContent = "Deleting...";
+
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      deleteBtn.textContent = "Delete";
+    });
 }
 
 function handleEscapeKey(evt) {
@@ -263,6 +269,9 @@ function handleNewPostSubmit(evt) {
 
 newPostFormElement.addEventListener("submit", handleNewPostSubmit);
 deleteForm.addEventListener("submit", handleDeleteSubmit);
+
+const deleteCancelBtn = deleteModal.querySelector(".modal__button");
+deleteCancelBtn.addEventListener("click", () => closeModal(deleteModal));
 
 const previewCloseBtn = previewModal.querySelector(".modal__close-button");
 previewCloseBtn.addEventListener("click", () => closeModal(previewModal));
