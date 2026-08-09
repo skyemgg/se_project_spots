@@ -134,16 +134,23 @@ function getCardElement(data) {
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
 
+  if (data.isLiked) {
+    likeButton.classList.add("card__like-icon_active");
+  } else {
+    likeButton.classList.remove("card__like-icon_active");
+  }
+
   return cardElement;
 }
 
 function handleLike(evt, id) {
-  const isLiked = evt.target.classList.contains("card__like-icon_active");
+  const likeIcon = evt.target;
+  const isLiked = likeIcon.classList.contains("card__like-icon_active");
 
   api
     .changeLikeStatus(id, isLiked)
     .then((updatedCard) => {
-      evt.target.classList.toggle("card__like-icon_active");
+      likeIcon.classList.toggle("card__like-icon_active", updatedCard.isliked);
     })
     .catch((err) => {
       console.log(err);
