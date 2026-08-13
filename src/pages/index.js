@@ -21,11 +21,6 @@ const api = new Api({
   },
 });
 
-document.querySelector(".header__logo").src = logoImg;
-document.querySelector(".profile__avatar").src = avatarImg;
-document.querySelector(".profile__edit img").src = penImg;
-document.querySelector(".profile__post img").src = postImg;
-
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -64,7 +59,6 @@ const initialCards = [
 ];
 
 document.querySelector(".header__logo").src = logoImg;
-document.querySelector(".profile__avatar").src = avatarImg;
 document.querySelector(".profile__edit img").src = penImg;
 document.querySelector(".profile__post img").src = postImg;
 
@@ -91,10 +85,11 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalTitle = previewModal.querySelector(".modal__preview-title");
 
+const profileAvatar = document.querySelector(".profile__avatar");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
-const avatarInput = avatarModal.querySelector("#profile__avatar-input");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
@@ -105,9 +100,9 @@ const cardsList = document.querySelector(".cards__list");
 api
   .getAppInfo()
   .then(([cards, userInfo]) => {
+    profileAvatar.src = userInfo.avatar;
     profileTitle.textContent = userInfo.name;
     profileDescription.textContent = userInfo.about;
-    document.querySelector(".profile__avatar").src = userInfo.avatar;
     cards.forEach((card) => renderCard(card, "append"));
   })
   .catch(console.error);
@@ -139,16 +134,23 @@ function getCardElement(data) {
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
 
+  if (data.isLiked) {
+    likeButton.classList.add("card__like-icon_active");
+  } else {
+    likeButton.classList.remove("card__like-icon_active");
+  }
+
   return cardElement;
 }
 
 function handleLike(evt, id) {
-  const isLiked = evt.target.classList.contains("card__like-icon_active");
+  const likeIcon = evt.target;
+  const isLiked = likeIcon.classList.contains("card__like-icon_active");
 
   api
     .changeLikeStatus(id, isLiked)
     .then((updatedCard) => {
-      evt.target.classList.toggle("card__like-icon_active");
+      likeIcon.classList.toggle("card__like-icon_active", updatedCard.isliked);
     })
     .catch((err) => {
       console.log(err);
@@ -163,13 +165,19 @@ function handleDeleteCard(cardElement, cardId) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const deleteBtn = deleteForm.querySelector(".modal__button-delete");
+  deleteBtn.textContent = "Deleting...";
+
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      deleteBtn.textContent = "Delete";
+    });
 }
 
 function handleEscapeKey(evt) {
@@ -239,7 +247,7 @@ avatarModalBtn.addEventListener("click", () => openModal(avatarModal));
 function handleAvatarSubmit(evt) {
   function makeRequest() {
     return api.editAvatarInfo(avatarInput.value).then((data) => {
-      document.querySelector(".profile__avatar").src = data.avatar;
+      profileAvatar.src = data.avatar;
       closeModal(avatarModal);
     });
   }
@@ -268,6 +276,9 @@ function handleNewPostSubmit(evt) {
 
 newPostFormElement.addEventListener("submit", handleNewPostSubmit);
 deleteForm.addEventListener("submit", handleDeleteSubmit);
+
+const deleteCancelBtn = deleteModal.querySelector(".modal__button");
+deleteCancelBtn.addEventListener("click", () => closeModal(deleteModal));
 
 const previewCloseBtn = previewModal.querySelector(".modal__close-button");
 previewCloseBtn.addEventListener("click", () => closeModal(previewModal));
